@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let yesButton = document.getElementById("yes");
 let noButton = document.getElementById("no");
 let questionText = document.getElementById("question");
@@ -114,5 +113,4 @@ yesButton.addEventListener("click", function() {
     `;
 
     document.body.style.overflow = "hidden";
->>>>>>> c532307eea5c939c0934e8078dd8def2ad8e7859
 });
