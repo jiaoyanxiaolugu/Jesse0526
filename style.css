@@ -62,3 +62,14 @@ button {
     justify-content: center;
 }
 
+.yes-random {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    background-color: #d4818e; /* 粉色 */
+    color: white;
+    transition: all 0.3s ease;
+}

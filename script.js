@@ -4,6 +4,9 @@ let questionText = document.getElementById("question");
 let mainImage = document.getElementById("mainImage");
 
 let clickCount = 0;  // 记录点击 No 的次数
+let generatedYesCount = 0; // 记录已生成的“可以”按钮数量
+let intervalTime = 1000; // 初始间隔时间 1 秒
+let stopGeneration = false; // 控制生成的开关
 
 // No 按钮的文字变化
 const noTexts = [
@@ -37,13 +40,42 @@ noButton.addEventListener("click", function() {
     }
 
     // 图片变化（前 5 次变化）
-    if (clickCount === 1) mainImage.src = "images/shocked.png"; // 震惊
-    if (clickCount === 2) mainImage.src = "images/think.png";   // 思考
-    if (clickCount === 3) mainImage.src = "images/angry.png";   // 生气
-    if (clickCount === 4) mainImage.src = "images/crying.png";  // 哭
-    if (clickCount >= 5) mainImage.src = "images/crying.png";  // 之后一直是哭
-
+    if (clickCount === 1) mainImage.src = "images/1.png"; // 震惊
+    if (clickCount === 2) mainImage.src = "images/2.png";   // 思考
+    if (clickCount === 3) mainImage.src = "images/3.png";   // 生气
+    if (clickCount === 4) mainImage.src = "images/4.png";  // 哭
+    if (clickCount >= 5) mainImage.src = "images/5.png";  // 之后一直是哭
+    
+    if (clickCount >= 6) {
+        noButton.style.display = "none"; // 隐藏“不要”按钮
+        generateYesButtons(); // 生成新的“可以”按钮
+    }
 });
+
+// 生成多个 "可以" 按钮
+function generateYesButtons() {
+    if (stopGeneration || generatedYesCount >= 50) return; // 限制最多生成 30 个
+
+    let yesClone = document.createElement("button");
+    yesClone.innerText = "可以";
+    yesClone.classList.add("yes-random");
+
+    yesClone.style.position = "absolute";
+    yesClone.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    yesClone.style.top = Math.random() * (window.innerHeight - 50) + "px";
+
+    yesClone.addEventListener("click", function() {
+        stopGeneration = true; // **点击“可以”后停止生成**
+        yesButton.click(); // 触发原“可以”按钮的逻辑
+    });
+
+    document.body.appendChild(yesClone);
+    generatedYesCount++; // 计数+1
+
+    // 逐渐加快生成速度
+    intervalTime *= 0.9; // 每次生成的时间减少 10%
+    setTimeout(generateYesButtons, intervalTime); // 递归调用
+}
 
 // Yes 按钮点击后，进入表白成功页面
 yesButton.addEventListener("click", function() {
