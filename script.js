@@ -1,26 +1,3 @@
-const imagesToPreload = [
-    "images/b.png",
-    "images/1.png",
-    "images/2.png",
-    "images/3.png",
-    "images/4.png",
-    "images/5.png",
-    "images/e.png"
-];
-
-let preloadedImages = [];
-
-function preloadImages() {
-    imagesToPreload.forEach((src) => {
-        let img = new Image();
-        img.src = src;
-        preloadedImages.push(img);
-    });
-}
-
-// 在页面加载完成后立即执行预加载
-window.addEventListener("load", preloadImages);
-
 let yesButton = document.getElementById("yes");
 let noButton = document.getElementById("no");
 let questionText = document.getElementById("question");
@@ -37,7 +14,7 @@ const noTexts = [
     "要不再想想？", 
     "不许选这个！ ", 
     "我会很伤心…", 
-    "不行:("
+    "不行吗..."
 ];
 
 // No 按钮点击事件
@@ -45,15 +22,15 @@ noButton.addEventListener("click", function() {
     clickCount++;
 
     // 让 Yes 变大，每次放大 2 倍
-    let yesSize = 1 + (clickCount * 1.05);
+    let yesSize = 1 + (clickCount * 1);
     yesButton.style.transform = `scale(${yesSize})`;
 
     // 挤压 No 按钮，每次右移 100px
-    let noOffset = clickCount * 35;
+    let noOffset = clickCount * 34;
     noButton.style.transform = `translateX(${noOffset}px)`;
 
     // **新增：让图片和文字往上移动**
-    let moveUp = clickCount * 25; // 每次上移 20px
+    let moveUp = clickCount * 20; // 每次上移 20px
     mainImage.style.transform = `translateY(-${moveUp}px)`;
     questionText.style.transform = `translateY(-${moveUp}px)`;
 
