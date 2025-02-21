@@ -22,15 +22,15 @@ noButton.addEventListener("click", function() {
     clickCount++;
 
     // 让 Yes 变大，每次放大 2 倍
-    let yesSize = 1 + (clickCount * 1);
+    let yesSize = 1 + (clickCount * 0.9);
     yesButton.style.transform = `scale(${yesSize})`;
 
     // 挤压 No 按钮，每次右移 100px
-    let noOffset = clickCount * 34;
+    let noOffset = clickCount * 30;
     noButton.style.transform = `translateX(${noOffset}px)`;
 
     // **新增：让图片和文字往上移动**
-    let moveUp = clickCount * 20; // 每次上移 20px
+    let moveUp = clickCount * 16; // 每次上移 20px
     mainImage.style.transform = `translateY(-${moveUp}px)`;
     questionText.style.transform = `translateY(-${moveUp}px)`;
 
@@ -82,7 +82,7 @@ yesButton.addEventListener("click", function() {
     document.body.innerHTML = `
         <div class="yes-screen">
             <h1 class="yes-text">!!!喜欢你!! ( >᎑<)♡︎ᐝ</h1>
-            <img src="images/hug.png" alt="拥抱" class="yes-image">
+            <img src="images/e.png" alt="拥抱" class="yes-image">
         </div>
     `;
 
