@@ -1,3 +1,26 @@
+const imagesToPreload = [
+    "images/b.png",
+    "images/1.png",
+    "images/2.png",
+    "images/3.png",
+    "images/4.png",
+    "images/5.png",
+    "images/e.png"
+];
+
+let preloadedImages = [];
+
+function preloadImages() {
+    imagesToPreload.forEach((src) => {
+        let img = new Image();
+        img.src = src;
+        preloadedImages.push(img);
+    });
+}
+
+// 在页面加载完成后立即执行预加载
+window.addEventListener("load", preloadImages);
+
 let yesButton = document.getElementById("yes");
 let noButton = document.getElementById("no");
 let questionText = document.getElementById("question");
@@ -22,11 +45,11 @@ noButton.addEventListener("click", function() {
     clickCount++;
 
     // 让 Yes 变大，每次放大 2 倍
-    let yesSize = 1 + (clickCount * 1.2);
+    let yesSize = 1 + (clickCount * 1.05);
     yesButton.style.transform = `scale(${yesSize})`;
 
     // 挤压 No 按钮，每次右移 100px
-    let noOffset = clickCount * 50;
+    let noOffset = clickCount * 35;
     noButton.style.transform = `translateX(${noOffset}px)`;
 
     // **新增：让图片和文字往上移动**
@@ -54,7 +77,7 @@ noButton.addEventListener("click", function() {
 
 // 生成多个 "可以" 按钮
 function generateYesButtons() {
-    if (stopGeneration || generatedYesCount >= 50) return; // 限制最多生成 30 个
+    if (stopGeneration || generatedYesCount >= 70) return; // 限制最多生成 30 个
 
     let yesClone = document.createElement("button");
     yesClone.innerText = "可以";
