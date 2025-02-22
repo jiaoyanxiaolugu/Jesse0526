@@ -5,7 +5,7 @@ let mainImage = document.getElementById("mainImage");
 
 let clickCount = 0;  // 记录点击 No 的次数
 let generatedYesCount = 0; // 记录已生成的“可以”按钮数量
-let intervalTime = 1000; // 初始间隔时间 1 秒
+let intervalTime = 800; // 初始间隔时间 1 秒
 let stopGeneration = false; // 控制生成的开关
 
 // No 按钮的文字变化
@@ -47,6 +47,7 @@ noButton.addEventListener("click", function() {
     if (clickCount >= 5) mainImage.src = "images/5.png";  // 之后一直是哭
     
     if (clickCount >= 6) {
+        document.body.style.backgroundColor = "#999999";
         noButton.style.display = "none"; // 隐藏“不要”按钮
         generateYesButtons(); // 生成新的“可以”按钮
     }
