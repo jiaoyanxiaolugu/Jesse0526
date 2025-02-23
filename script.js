@@ -47,7 +47,7 @@ noButton.addEventListener("click", function() {
     if (clickCount >= 5) mainImage.src = "images/5.png";  // 之后一直是哭
     
     if (clickCount >= 6) {
-        //document.body.style.backgroundColor = "#999999";
+        document.body.style.backgroundColor = "#343434";
         noButton.style.display = "none"; // 隐藏“不要”按钮
         generateYesButtons(); // 生成新的“可以”按钮
     }
@@ -55,7 +55,7 @@ noButton.addEventListener("click", function() {
 
 // 生成多个 "可以" 按钮
 function generateYesButtons() {
-    if (stopGeneration || generatedYesCount >= 70) return; // 限制最多生成 30 个
+    if (stopGeneration || generatedYesCount >= 50) return; // 限制最多生成 30 个
 
     let yesClone = document.createElement("button");
     yesClone.innerText = "可以";
@@ -85,7 +85,7 @@ function generateYesButtons() {
 // Yes 按钮点击后，进入表白成功页面
 yesButton.addEventListener("click", function() {
     stopGeneration = true; // **点击原"可以"后，停止生成新按钮**
-    //document.body.style.backgroundColor = "#ffffff";
+    document.body.style.backgroundColor = "#ffffff";
     document.body.innerHTML = `
         <div class="container">
             <h1 class="yes-text">!!!喜欢你!! ( >᎑<)♡︎ᐝ</h1>
