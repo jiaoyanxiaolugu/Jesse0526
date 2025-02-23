@@ -47,7 +47,7 @@ noButton.addEventListener("click", function() {
     if (clickCount >= 5) mainImage.src = "images/5.png";  // 之后一直是哭
     
     if (clickCount >= 6) {
-        document.body.style.backgroundColor = "#999999";
+        //document.body.style.backgroundColor = "#999999";
         noButton.style.display = "none"; // 隐藏“不要”按钮
         generateYesButtons(); // 生成新的“可以”按钮
     }
@@ -63,7 +63,11 @@ function generateYesButtons() {
 
     yesClone.style.position = "absolute";
     yesClone.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    yesClone.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    if (generatedYesCount < 8) {
+        yesClone.style.top = Math.random() / 2 * (window.innerHeight - 50) + "px";
+    } else {
+        yesClone.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    }
 
     yesClone.addEventListener("click", function() {
         stopGeneration = true; // **点击“可以”后停止生成**
@@ -80,10 +84,12 @@ function generateYesButtons() {
 
 // Yes 按钮点击后，进入表白成功页面
 yesButton.addEventListener("click", function() {
+    stopGeneration = true; // **点击原"可以"后，停止生成新按钮**
+    //document.body.style.backgroundColor = "#ffffff";
     document.body.innerHTML = `
-        <div class="yes-screen">
+        <div class="container">
             <h1 class="yes-text">!!!喜欢你!! ( >᎑<)♡︎ᐝ</h1>
-            <img src="images/e.png" alt="拥抱" class="yes-image">
+            <img id="mainImage" style="width: 400px" src="images/e.png" alt="拥抱">
         </div>
     `;
 
